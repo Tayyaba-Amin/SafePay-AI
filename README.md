@@ -101,6 +101,7 @@ Each analyzer returns:
 │   │   └── models/
 │   │       └── schemas.py       # Pydantic response models
 │   ├── run.py                   # Server entry point (Uvicorn)
+│   ├── requirements.txt         # Python dependencies
 │   └── .env.example
 ├── frontend/
 │   ├── src/
@@ -152,7 +153,7 @@ python -m venv venv
 source venv/bin/activate
 
 # Install dependencies
-pip install fastapi uvicorn pydantic-settings openai httpx python-multipart
+pip install -r requirements.txt
 
 # Create your .env file from the template
 copy .env.example .env        # Windows
@@ -216,6 +217,10 @@ npm run dev
 | Variable | Description | Default |
 |----------|-------------|---------|
 | `NEXT_PUBLIC_API_URL` | Backend API base URL | `http://localhost:8000` |
+
+> **Important:** Do **not** add a trailing slash to the URL — the API client concatenates it directly with endpoint paths, so a trailing slash produces broken double-slash URLs (`...com//api/...`).
+>
+> Production example: `NEXT_PUBLIC_API_URL=https://safepay-ai-backend.onrender.com`
 
 ---
 

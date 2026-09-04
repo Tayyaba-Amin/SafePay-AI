@@ -1,6 +1,6 @@
 # SafePay AI — AI Fraud Shield for Digital Payments
 
-AI-powered fraud awareness platform for digital payments in Pakistan. Upload a suspicious receipt screenshot, paste a scam message, or record a voice call — SafePay AI analyzes it for fraud indicators, assigns a risk level, explains the reasoning in plain English or Urdu, and recommends a safe action.
+AI-powered fraud awareness platform for digital payments in Pakistan. Upload a suspicious receipt screenshot, paste a scam message, or upload a voice call recording — SafePay AI analyzes it for fraud indicators, assigns a risk level, explains the reasoning in plain English or Urdu, and recommends a safe action.
 
 ### [Live Demo → safe-pay-ai-rho.vercel.app](https://safe-pay-ai-rho.vercel.app/)
 
@@ -114,6 +114,7 @@ Each analyzer returns:
 │   │   ├── components/          # Shared UI components
 │   │   └── lib/
 │   │       ├── api.ts           # API client
+│   │       ├── mock.ts          # Demo-mode sample results (fallback when backend is unreachable)
 │   │       ├── LanguageContext.tsx  # Global language state (EN/UR)
 │   │       └── ThemeContext.tsx    # Dark mode state
 │   ├── package.json
@@ -128,7 +129,7 @@ Each analyzer returns:
 ### Prerequisites
 
 - **Python** 3.11+
-- **Node.js** 18+ and **npm** 9+
+- **Node.js** 20.9+ (required by Next.js 16)
 - An Alibaba Cloud DashScope API key ([get one here](https://dashscope.console.aliyun.com/))
 
 ### 1. Clone the Repository
@@ -231,6 +232,7 @@ npm run dev
 | `GET` | `/health` | Health check |
 | `POST` | `/api/receipt/analyze` | Analyze a receipt screenshot (`multipart/form-data`) |
 | `POST` | `/api/message/analyze-text` | Analyze a pasted text message (`application/json`) |
+| `POST` | `/api/message/analyze` | Screenshot-based message analysis — *not yet implemented (returns 501)* |
 | `POST` | `/api/voice/analyze` | Analyze a voice recording (`multipart/form-data`) |
 
 ---
@@ -249,6 +251,8 @@ npm run dev
    - Explanation of the risk
    - Recommended safe action
 5. **Switch language** at any time — results update immediately
+
+> **Note:** If the backend is unreachable, the Message and Receipt analyzers fall back to a clearly-labeled **demo mode** showing sample results; the Voice analyzer shows the backend error instead. Connect the backend with a valid `DASHSCOPE_API_KEY` for real AI analysis.
 
 ---
 

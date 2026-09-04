@@ -2,6 +2,8 @@
 
 AI-powered fraud awareness platform for digital payments in Pakistan. Upload a suspicious receipt screenshot, paste a scam message, or record a voice call — SafePay AI analyzes it for fraud indicators, assigns a risk level, explains the reasoning in plain English or Urdu, and recommends a safe action.
 
+### [Live Demo → safe-pay-ai-rho.vercel.app](https://safe-pay-ai-rho.vercel.app/)
+
 > **Disclaimer:** SafePay AI provides AI-generated risk awareness only. It does **not** officially verify transactions, guarantee fraud detection, or replace your bank, wallet provider, or law enforcement.
 
 ---
@@ -230,7 +232,7 @@ npm run dev
 
 ## Usage
 
-1. **Open** http://localhost:3000 in your browser
+1. **Open** [https://safe-pay-ai-rho.vercel.app/](https://safe-pay-ai-rho.vercel.app/) in your browser (or `http://localhost:3000` if running locally)
 2. **Choose a language** — English or اردو — using the selector in the header
 3. **Select an analyzer:**
    - **Receipt** — Upload a payment receipt screenshot (JPEG, PNG, WebP)

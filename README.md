@@ -66,9 +66,11 @@ Each analyzer returns:
 └─────────────────────┘                     └─────────────────────┘                 └───────────────────────┘
 ```
 
-- **Frontend** — Next.js 16 with React 19, TypeScript, and Tailwind CSS. Handles the UI, file uploads, and result display.
-- **Backend** — Python FastAPI with async HTTP. Receives uploads, calls AI models, and returns structured JSON.
-- **AI Layer** — Alibaba Cloud Model Studio (DashScope) provides the intelligence. No data is stored after analysis.
+| Layer | Tech | Role |
+|-------|------|------|
+| **Frontend** | Next.js 16, React 19, TypeScript, Tailwind CSS 4 | UI, file uploads, result display |
+| **Backend** | Python FastAPI, Uvicorn, Pydantic | Receives uploads, calls AI models, returns structured JSON |
+| **AI Layer** | Alibaba Cloud DashScope (Qwen-VL-Plus, Qwen3-ASR-Flash) | Vision analysis, text analysis, speech-to-text |
 
 ### AI Models
 
@@ -96,22 +98,21 @@ Each analyzer returns:
 │   │   │   └── dashscope.py     # DashScope AI integration
 │   │   └── models/
 │   │       └── schemas.py       # Pydantic response models
-│   ├── requirements.txt
-│   ├── run.py                   # Server entry point
+│   ├── run.py                   # Server entry point (Uvicorn)
 │   └── .env.example
 ├── frontend/
 │   ├── src/
 │   │   ├── app/
 │   │   │   ├── layout.tsx       # Root layout (Header, Footer, providers)
 │   │   │   ├── page.tsx         # Home page
-│   │   │   ├── receipt/         # Receipt analyzer
-│   │   │   ├── message/         # Message analyzer
-│   │   │   └── voice/           # Voice analyzer
+│   │   │   ├── receipt/         # Receipt analyzer page
+│   │   │   ├── message/         # Message analyzer page
+│   │   │   └── voice/           # Voice analyzer page
 │   │   ├── components/          # Shared UI components
 │   │   └── lib/
 │   │       ├── api.ts           # API client
-│   │       ├── LanguageContext  # Global language state (EN/UR)
-│   │       └── ThemeContext     # Dark mode state
+│   │       ├── LanguageContext.tsx  # Global language state (EN/UR)
+│   │       └── ThemeContext.tsx    # Dark mode state
 │   ├── package.json
 │   └── .env.example
 └── README.md
@@ -123,16 +124,15 @@ Each analyzer returns:
 
 ### Prerequisites
 
-- **Python** 3.11+ (tested on 3.14)
-- **Node.js** 18+ (tested on 24)
-- **npm** 9+
+- **Python** 3.11+
+- **Node.js** 18+ and **npm** 9+
 - An Alibaba Cloud DashScope API key ([get one here](https://dashscope.console.aliyun.com/))
 
 ### 1. Clone the Repository
 
 ```bash
 git clone <repository-url>
-cd safepay-ai
+cd <project-directory>
 ```
 
 ### 2. Backend Setup
@@ -150,11 +150,11 @@ python -m venv venv
 source venv/bin/activate
 
 # Install dependencies
-pip install -r requirements.txt
+pip install fastapi uvicorn pydantic-settings openai httpx python-multipart
 
 # Create your .env file from the template
-copy .env.example .env     # Windows
-# cp .env.example .env     # macOS/Linux
+copy .env.example .env        # Windows
+# cp .env.example .env        # macOS/Linux
 
 # Edit .env and add your DashScope API key
 # DASHSCOPE_API_KEY=sk-xxxxxxxxxxxx
@@ -168,9 +168,9 @@ cd frontend
 # Install dependencies
 npm install
 
-# Create your .env.local file from the template
-copy .env.example .env.local     # Windows
-# cp .env.example .env.local     # macOS/Linux
+# Create your .env file from the template
+copy .env.example .env        # Windows
+# cp .env.example .env        # macOS/Linux
 ```
 
 ### 4. Run Locally
@@ -184,7 +184,7 @@ cd backend
 python run.py
 ```
 
-Backend runs at **http://localhost:8000** — API docs at **http://localhost:8000/docs**
+> Backend runs at **http://localhost:8000** — API docs at **http://localhost:8000/docs**
 
 **Terminal 2 — Frontend:**
 
@@ -193,7 +193,7 @@ cd frontend
 npm run dev
 ```
 
-Frontend runs at **http://localhost:3000**
+> Frontend runs at **http://localhost:3000**
 
 ---
 
@@ -209,7 +209,7 @@ Frontend runs at **http://localhost:3000**
 | `CORS_ORIGINS` | Comma-separated allowed origins | `http://localhost:3000` |
 | `MAX_UPLOAD_SIZE` | Max upload file size (bytes) | `10485760` (10 MB) |
 
-### Frontend (`frontend/.env.local`)
+### Frontend (`frontend/.env`)
 
 | Variable | Description | Default |
 |----------|-------------|---------|
@@ -222,9 +222,9 @@ Frontend runs at **http://localhost:3000**
 | Method | Path | Description |
 |--------|------|-------------|
 | `GET` | `/health` | Health check |
-| `POST` | `/api/receipt/analyze` | Analyze a receipt screenshot (multipart) |
-| `POST` | `/api/message/analyze-text` | Analyze a pasted text message (JSON) |
-| `POST` | `/api/voice/analyze` | Analyze a voice recording (multipart) |
+| `POST` | `/api/receipt/analyze` | Analyze a receipt screenshot (`multipart/form-data`) |
+| `POST` | `/api/message/analyze-text` | Analyze a pasted text message (`application/json`) |
+| `POST` | `/api/voice/analyze` | Analyze a voice recording (`multipart/form-data`) |
 
 ---
 

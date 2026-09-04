@@ -133,8 +133,8 @@ Each analyzer returns:
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd <project-directory>
+git clone https://github.com/Tayyaba-Amin/SafePay-AI.git
+cd SafePay-AI
 ```
 
 ### 2. Backend Setup

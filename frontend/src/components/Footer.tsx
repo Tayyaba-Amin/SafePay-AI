@@ -36,7 +36,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <p className="text-[11px] text-[var(--placeholder)] pt-1">
-          &copy; {new Date().getFullYear()} SafePay AI For awareness purposes only.
+          &copy; {new Date().getFullYear()} SafePay AI - For awareness purposes only.
         </p>
       </div>
     </footer>

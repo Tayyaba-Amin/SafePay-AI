@@ -36,35 +36,25 @@ export default function AnalyzerCard({
       {/* Security accent strip */}
       <div className="security-accent-strip" />
 
-      {/* Icon with shield-check feel */}
-      <div className={`relative w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors duration-200 ${
-        isDark
-          ? "bg-[var(--primary-light)] text-[var(--primary)] group-hover:bg-[var(--primary-selected)]"
-          : "bg-[#EFF6FF] text-[#2563EB] group-hover:bg-[#DBEAFE]"
-      }`}>
-        {icon}
-        {/* Small shield-check badge */}
-        <div className={`absolute -bottom-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center border ${
+      {/* Icon + Title row */}
+      <div className="flex items-center gap-3 mb-3">
+        <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-200 ${
           isDark
-            ? "bg-[var(--card-bg)] border-[var(--border)]"
-            : "bg-white border-[#E2E8F0]"
+            ? "bg-[var(--primary-light)] text-[var(--primary)] group-hover:bg-[var(--primary-selected)]"
+            : "bg-[#EFF6FF] text-[#2563EB] group-hover:bg-[#DBEAFE]"
         }`}>
-          <svg className="w-3 h-3 text-[var(--risk-low)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-          </svg>
+          {icon}
         </div>
+        {isUrdu ? (
+          <h3 className="text-[17px] font-bold text-[var(--foreground)] urdu-text" dir="rtl" lang="ur">
+            {titleUrdu}
+          </h3>
+        ) : (
+          <h3 className="text-[17px] font-bold text-[var(--foreground)]">
+            {title}
+          </h3>
+        )}
       </div>
-
-      {/* Title */}
-      {isUrdu ? (
-        <h3 className="text-[17px] font-bold text-[var(--foreground)] mb-1 urdu-text" dir="rtl" lang="ur">
-          {titleUrdu}
-        </h3>
-      ) : (
-        <h3 className="text-[17px] font-bold text-[var(--foreground)] mb-1">
-          {title}
-        </h3>
-      )}
 
       {/* Description */}
       <p className="text-sm text-[var(--text-secondary)] leading-relaxed">

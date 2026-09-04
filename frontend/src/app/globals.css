@@ -1,0 +1,354 @@
+@import "tailwindcss";
+
+/* ───────── Tailwind v4 dark variant (class-based) ───────── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ───────── SafePay AI Design System ───────── */
+:root {
+  /* Brand / Primary Action */
+  --primary: #2563EB;
+  --primary-hover: #1D4ED8;
+  --primary-pressed: #1E40AF;
+  --primary-focus: #BFDBFE;
+  --primary-light: #EFF6FF;
+  --primary-selected: #DBEAFE;
+
+  /* Neutrals */
+  --background: #F8FAFC;
+  --background-secondary: #F8FAFC;
+  --card-bg: #FFFFFF;
+  --card-elevated: #FFFFFF;
+  --surface: #F1F5F9;
+  --foreground: #0F172A;
+  --text-secondary: #475569;
+  --muted: #64748B;
+  --placeholder: #94A3B8;
+  --border: #E2E8F0;
+  --border-strong: #E2E8F0;
+  --input-border: #CBD5E1;
+  --input-bg: #FFFFFF;
+  --label: #334155;
+
+  /* Risk — Low */
+  --risk-low: #16A34A;
+  --risk-low-bg: #F0FDF4;
+  --risk-low-border: #BBF7D0;
+  --risk-low-text: #166534;
+  --risk-low-body: #166534;
+
+  /* Risk — Medium */
+  --risk-medium: #D97706;
+  --risk-medium-bg: #FFFBEB;
+  --risk-medium-border: #FDE68A;
+  --risk-medium-text: #92400E;
+  --risk-medium-body: #78350F;
+
+  /* Risk — High */
+  --risk-high: #DC2626;
+  --risk-high-bg: #FEF2F2;
+  --risk-high-border: #FECACA;
+  --risk-high-text: #991B1B;
+  --risk-high-body: #7F1D1D;
+
+  /* Accent surfaces */
+  --info-bg: #EFF6FF;
+  --info-border: #BFDBFE;
+  --info-text: #1E40AF;
+  --warning-bg: #FFFBEB;
+  --warning-border: #FDE68A;
+  --warning-text: #92400E;
+  --error-bg: #FEF2F2;
+  --error-border: #FECACA;
+  --error-text: #DC2626;
+
+  /* Gauge */
+  --gauge-track: #E2E8F0;
+}
+
+/* ───────── Dark Mode Overrides ───────── */
+[data-theme="dark"] {
+  /* Brand */
+  --primary: #3B82F6;
+  --primary-hover: #60A5FA;
+  --primary-pressed: #2563EB;
+  --primary-focus: #60A5FA;
+  --primary-light: #172554;
+  --primary-selected: #1E3A5F;
+
+  /* Neutrals */
+  --background: #0F172A;
+  --background-secondary: #111827;
+  --card-bg: #1E293B;
+  --card-elevated: #263449;
+  --surface: #111827;
+  --foreground: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --muted: #94A3B8;
+  --placeholder: #64748B;
+  --border: #334155;
+  --border-strong: #475569;
+  --input-border: #475569;
+  --input-bg: #111827;
+  --label: #CBD5E1;
+
+  /* Risk — Low */
+  --risk-low: #4ADE80;
+  --risk-low-bg: #052E16;
+  --risk-low-border: #166534;
+  --risk-low-text: #4ADE80;
+  --risk-low-body: #86EFAC;
+
+  /* Risk — Medium */
+  --risk-medium: #FBBF24;
+  --risk-medium-bg: #451A03;
+  --risk-medium-border: #92400E;
+  --risk-medium-text: #FBBF24;
+  --risk-medium-body: #FDE68A;
+
+  /* Risk — High */
+  --risk-high: #F87171;
+  --risk-high-bg: #450A0A;
+  --risk-high-border: #991B1B;
+  --risk-high-text: #F87171;
+  --risk-high-body: #FCA5A5;
+
+  /* Accent surfaces */
+  --info-bg: #172554;
+  --info-border: #1E3A5F;
+  --info-text: #93C5FD;
+  --warning-bg: #451A03;
+  --warning-border: #92400E;
+  --warning-text: #FBBF24;
+  --error-bg: #450A0A;
+  --error-border: #991B1B;
+  --error-text: #F87171;
+
+  /* Gauge */
+  --gauge-track: #334155;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-pressed: var(--primary-pressed);
+  --color-primary-focus: var(--primary-focus);
+  --color-primary-light: var(--primary-light);
+  --color-primary-selected: var(--primary-selected);
+  --color-card-bg: var(--card-bg);
+  --color-surface: var(--surface);
+  --color-text-secondary: var(--text-secondary);
+  --color-muted: var(--muted);
+  --color-placeholder: var(--placeholder);
+  --color-border: var(--border);
+  --color-input-border: var(--input-border);
+  --color-label: var(--label);
+  --color-risk-low: var(--risk-low);
+  --color-risk-low-bg: var(--risk-low-bg);
+  --color-risk-low-border: var(--risk-low-border);
+  --color-risk-low-text: var(--risk-low-text);
+  --color-risk-medium: var(--risk-medium);
+  --color-risk-medium-bg: var(--risk-medium-bg);
+  --color-risk-medium-border: var(--risk-medium-border);
+  --color-risk-medium-text: var(--risk-medium-text);
+  --color-risk-high: var(--risk-high);
+  --color-risk-high-bg: var(--risk-high-bg);
+  --color-risk-high-border: var(--risk-high-border);
+  --color-risk-high-text: var(--risk-high-text);
+  --color-risk-high-body: var(--risk-high-body);
+  --font-sans: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* ───────── Base ───────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ───────── Theme Transition ───────── */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, fill 0.2s ease, stroke 0.2s ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.theme-transitioning,
+  html.theme-transitioning *,
+  html.theme-transitioning *::before,
+  html.theme-transitioning *::after {
+    transition: none !important;
+  }
+}
+
+/* ───────── Focus Visible (Accessibility) ───────── */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ───────── Risk Level Badges ───────── */
+.risk-badge-low {
+  background-color: var(--risk-low-bg);
+  color: var(--risk-low-text);
+  border: 1px solid var(--risk-low-border);
+}
+.risk-badge-medium {
+  background-color: var(--risk-medium-bg);
+  color: var(--risk-medium-text);
+  border: 1px solid var(--risk-medium-border);
+}
+.risk-badge-high {
+  background-color: var(--risk-high-bg);
+  color: var(--risk-high-text);
+  border: 1px solid var(--risk-high-border);
+}
+.risk-badge-critical {
+  background-color: var(--risk-high-bg);
+  color: var(--risk-high-text);
+  border: 1px solid var(--risk-high-border);
+}
+
+/* ───────── Risk Score Bar ───────── */
+.risk-bar-low    { background-color: var(--risk-low); }
+.risk-bar-medium { background-color: var(--risk-medium); }
+.risk-bar-high   { background-color: var(--risk-high); }
+.risk-bar-critical { background-color: var(--risk-high); }
+
+/* ───────── Gauge SVG ───────── */
+.gauge-track {
+  stroke: var(--gauge-track);
+}
+
+/* ───────── Keyframe Animations ───────── */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(0.95); opacity: 0.4; }
+  50%  { transform: scale(1);    opacity: 0.15; }
+  100% { transform: scale(0.95); opacity: 0.4; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes gauge-fill {
+  from { stroke-dashoffset: 251; }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.25s ease-out both;
+}
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out both;
+}
+.animate-gauge {
+  animation: gauge-fill 0.8s ease-out both;
+}
+.animate-spin-slow {
+  animation: spin 0.8s linear infinite;
+}
+
+/* Stagger children */
+.stagger-1 { animation-delay: 0.04s; }
+.stagger-2 { animation-delay: 0.08s; }
+.stagger-3 { animation-delay: 0.12s; }
+.stagger-4 { animation-delay: 0.16s; }
+.stagger-5 { animation-delay: 0.20s; }
+.stagger-6 { animation-delay: 0.24s; }
+
+/* ───────── AI Scan Animation ───────── */
+@keyframes scan-line {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  15%  { opacity: 0.6; }
+  85%  { opacity: 0.6; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+@keyframes shield-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.25); }
+  50%      { box-shadow: 0 0 0 8px rgba(37, 99, 235, 0); }
+}
+
+@keyframes scan-dot {
+  0%, 100% { opacity: 0.3; }
+  50%      { opacity: 1; }
+}
+
+.animate-scan-line {
+  animation: scan-line 1.8s ease-in-out infinite;
+}
+
+.animate-shield-pulse {
+  animation: shield-pulse 2s ease-in-out infinite;
+}
+
+.animate-scan-dot {
+  animation: scan-dot 1.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-scan-line,
+  .animate-shield-pulse,
+  .animate-scan-dot {
+    animation: none !important;
+  }
+}
+
+/* ───────── Security Card Accent Strip ───────── */
+.security-accent-strip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 9999px 9999px 0 0;
+  background: var(--primary);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.group:hover .security-accent-strip {
+  opacity: 1;
+}
+
+/* ───────── Urdu Text ───────── */
+.urdu-text {
+  font-family: var(--font-urdu), "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", serif;
+  direction: rtl;
+  line-height: 2;
+}
